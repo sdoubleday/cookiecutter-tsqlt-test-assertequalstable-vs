@@ -6,7 +6,13 @@ BEGIN
 	IF OBJECT_ID('[{{cookiecutter.test_schema_name}}].EXPECTED') IS NOT NULL DROP TABLE [{{cookiecutter.test_schema_name}}].EXPECTED;
 
 	/*Do you need to fake tables and insert rows?
-	EXECUTE tSQLt.FakeTable @TableName = 'SchemaName.TableName';
+	EXECUTE tSQLt.FakeTable @TableName = '[{{cookiecutter.schema_under_test}}].TableName';
+	*/
+	/*Do you need to spyprocedure?
+	EXECUTE tSQLt.SpyProcedure @ProcedureName = '[{{cookiecutter.schema_under_test}}].TableName'
+	--,@CommandToExecute = 'SELECT 1'
+	SELECT _id_, MyParameterName1, MyParameterName2 FROM [{{cookiecutter.schema_under_test}}].TableName_SpyProcedureLog
+	SELECT COUNT(1) FROM [{{cookiecutter.schema_under_test}}].TableName_SpyProcedureLog
 	*/
 
 	--ACT
